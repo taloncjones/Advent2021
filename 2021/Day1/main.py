@@ -1,11 +1,15 @@
 def main():
-    prev, count = float("inf"), 0
+    pop, count = float("inf"), 0
+    window = [float("inf")]
     f = open("input.txt", "r")
 
     for value in f:
-        if prev < int(value):
+        window.append(int(value))
+        if len(window) > 3:
+            pop, window = window[0], window[1:]
+
+        if pop < window[-1]:
             count += 1
-        prev = int(value)
 
     print(count)
 
